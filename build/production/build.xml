@@ -32,7 +32,7 @@
     </target>
 
     <target name="composer">
-        <exec dir="${target.dir}" command="php C:\OpenServer\bin\composer.phar install"
+        <exec dir="${target.dir}" command="composer install"
               checkreturn="true" passthru="true" error="stdout"/>
     </target>
 
