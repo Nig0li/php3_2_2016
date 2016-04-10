@@ -14,9 +14,9 @@
         <copy todir="${target.dir}">
             <fileset dir="${project.basedir}">
                 <include name="**"/>
-
             </fileset>
         </copy>
+        <mkdir dir="${target.dir}/protected/Cache" mode="0777" />
     </target>
 
     <target name="config">
