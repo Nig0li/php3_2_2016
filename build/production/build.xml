@@ -6,7 +6,7 @@
         <php function="date" returnProperty="data.time">
             <param value="Y-m-d-H-i-s"/>
         </php>
-        <resolvepath propertyName="target.dir" path="C:\OpenServer\domains\git\${data.time}"/>
+        <resolvepath propertyName="target.dir" path="/home/serv/domains/git/${data.time}"/>
         <property name="domain" value="test.com"/>
     </target>
 
@@ -20,7 +20,7 @@
     </target>
 
     <target name="config">
-        <copy file="${project.basedir}\build\production\config.php" tofile="${target.dir}\protected\config.php" overwrite="true">
+        <copy file="${project.basedir}/build/production/config.php" tofile="${target.dir}/protected/config.php" overwrite="true">
             <filterchain>
                 <replacetokens begintoken="{{" endtoken="}}">
                     <token key="domain" value="${domain}"/>
@@ -36,6 +36,10 @@
               checkreturn="true" passthru="true" error="stdout"/>
     </target>
 
+    <target name="symlink">
+        <symlink target="${target.dir}" link="/home/serv/domains/git/current" overwrite="true"/>
+    </target>
+    
     <target name="migrate">
         <exec command="php protected/t4.php /migrate" dir="${target.dir}" checkreturn="true" passthru="true" error="stdout"/>
     </target>
